@@ -1,7 +1,7 @@
 {
-  "name": "AWAIS-MD",
-  "description": "ᴊᴀᴠᴀsᴄʀɪᴘᴛ ᴡʜᴀᴛsᴀᴘᴘ ʙᴏᴛ ᴄʀᴇᴀᴛᴇᴅ ʙʏ ᴀᴡᴀɪs ᴍᴅ",
-  "logo": "https://i.imgur.com/XM8Vadf.jpeg",
+  "name": "AKINDU MD",
+  "description": "SIMPLE WHATSAPP BOT",
+  "logo": "https://i.ibb.co/nMky5xTB/7341.jpg",
   "keywords": ["bot"],
   "success_url": "/",
 
@@ -16,13 +16,13 @@
     "ALIVE_IMG": {
       "description": "paste your image url if you don't have you can use this public url.",
       "required": true,
-      "value": "https://i.imgur.com/XM8Vadf.jpeg"
+      "value": "https://i.ibb.co/nMky5xTB/7341.jpg"
     }, 
     
     "ALIVE_MSG": {
       "description": "paste your alive message hear.",
       "required": true,
-      "value": "•°- ß Ə ʌ υ ʈ ı ƒ υ ɭ - °•🩷🌸🤤.!!"
+      "value": "HIII 👋"
     },
     
     "PREFIX": {
@@ -119,7 +119,7 @@
     "BOT_NAME": {
       "description": "write hear your name.",
       "required": true,
-      "value": "ᴀᴡᴀɪs ᴍᴅ"
+      "value": "AKINDU MD"
     }, 
 
     "HEART_REACT": {
@@ -136,12 +136,12 @@
     "CAPTION": {
       "description": "enter your caption if you want to show on menu.",
       "required": true,
-      "value": "*ᴘᴏᴡᴅᴇʀᴇᴅ ʙʏ ᴀᴡᴀɪs ᴍᴅ*"
+      "value": "*POWER BY AKINDU MD*"
     }, 
     "AUTO_STATUS__MSG": {
       "description": "enter your caption if you want to show on status reply.",
       "required": true,
-      "value": "𝒚𝒐𝒖𝒓 𝒔𝒕𝒂𝒕𝒖𝒔 𝒔𝒆𝒆𝒏 𝒋𝒖𝒔𝒕 𝒏𝒐𝒘 𝒃𝒚 𝒂𝒘𝒂𝒊𝒔 𝒎𝒅"
+      "value": "𝒚𝒐𝒖𝒓 𝒔𝒕𝒂𝒕𝒖𝒔 𝒔𝒆𝒆𝒏 𝒋𝒖𝒔𝒕 𝒏𝒐𝒘 𝒃𝒚 AKINDU  𝒎𝒅"
     },    
 
     "CUSTOM_REACT_EMOJIS": {
@@ -159,7 +159,7 @@
     "AUTHOR": {
       "description": "stickerpack author name",
       "required": true,
-      "value": "AWAIS MD"
+      "value": "AKINDU  MD"
     },
 
     "PACKNAME": {

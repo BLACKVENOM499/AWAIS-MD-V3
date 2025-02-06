@@ -15,7 +15,6 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
     try {
   let dec = `*${config.BOT_NAME}* 
 
-*WELCOME ${pushname}*
 
  𝑶𝑾𝑵𝑬𝑹 : *${config.BOT_NAME} 
  𝑴𝑶𝑫𝑬 : *${config.MODE}*

@@ -51,8 +51,8 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
                     forwardingScore: 999,
                     isForwarded: true,
                     forwardedNewsletterMessageInfo: {
-                        newsletterJid: '',
-                        newsletterName: '',
+                        newsletterJid: '120363395269955872@g.us',
+                        newsletterName: 'AKINDU MD',
                         serverMessageId: 143
                     }
                 }

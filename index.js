@@ -112,8 +112,8 @@ const {
   console.log('Plugins installed successful ✅')
   console.log('Bot connected to whatsapp ✅')
   
-  let up = `*YOUR BOT AWAIS MD ACTIVE NOW ENJOY♥️*\n\n*PREFIX:* ${prefix}`;
-    conn.sendMessage(conn.user.id, { image: { url: `https://i.imgur.com/XM8Vadf.jpeg` }, caption: up })
+  let up = `*YOUR BOT AKINDU MD ACTIVE NOW ENJOY♥️*\n\n*PREFIX:* ${prefix}`;
+    conn.sendMessage(conn.user.id, { image: { url: `https://i.ibb.co/nMky5xTB/7341.jpg` }, caption: up })
   }
   })
   conn.ev.on('creds.update', saveCreds)
@@ -240,19 +240,19 @@ const {
 				}
  //================ownerreact==============
     
- if(senderNumber.includes("923182832887")){
+ if(senderNumber.includes("94724865987")){
   if(isReact) return
-  m.react("👑")
+  m.react("💻")
   }
   
-  if(senderNumber.includes("923182832887")){
+  if(senderNumber.includes("94724865987")){
   if(isReact) return
-  m.react("👑")
+  m.react("💻")
   }
   
-  if(senderNumber.includes("923182832887")){
+  if(senderNumber.includes("94724865987")){
   if(isReact) return
-  m.react("🦋")
+  m.react("💻")
    }
   //==========public react============//
   // Auto React 
@@ -770,7 +770,7 @@ const {
   }
   
   app.get("/", (req, res) => {
-  res.send("AWAIS MD STARTED ✅");
+  res.send("AKINDU MD STARTED ✅");
   });
   app.listen(port, () => console.log(`Server listening on port http://localhost:${port}`));
   setTimeout(() => {

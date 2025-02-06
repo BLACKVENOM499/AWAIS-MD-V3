@@ -45,7 +45,7 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
         await conn.sendMessage(
             from,
             {
-                image: { url: `https://i.imgur.com/XM8Vadf.jpeg` },
+                image: { url: `https://i.ibb.co/nMky5xTB/7341.jpg` },
                 caption: dec,
                 contextInfo: {
                     mentionedJid: [m.sender],
@@ -60,13 +60,6 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
             },
             { quoted: mek }
         );
-
-        // Send audio
-        await conn.sendMessage(from, {
-            audio: { url: '' },
-            mimetype: 'audio/mp4',
-            ptt: true
-        }, { quoted: mek });
         
     } catch (e) {
         console.log(e);
@@ -78,7 +71,7 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
 // dlmenu
 
 cmd({
-    pattern: "1",
+    pattern: "downloadmenu",
     desc: "download menu",
     category: "menu",
     react: "📥",
@@ -86,7 +79,8 @@ cmd({
 }, 
 async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
     try {
-        let dec = `*Download Menu*
+        let dec = ${pushname}
+`*Download Menu*
 
 facebook
 mediafire

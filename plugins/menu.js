@@ -8,24 +8,22 @@ cmd({
     pattern: "menu",
     desc: "menu the bot",
     category: "menu",
-    react: "⚡",
+    react: "📃",
     filename: __filename
 }, 
 async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
     try {
-        let dec = `╭━━━〔 *${config.BOT_NAME}* 〕━━━┈⊷
-┃★╭──────────────
-┃★│ 𝑶𝑾𝑵𝑬𝑹 : *${config.BOT_NAME}*
-┃★│ 𝑩𝑨𝑰𝑳𝑬𝒀𝑺 : *Multi Device*
-┃★│ 𝑻𝒀𝑷𝑬 : *NodeJs*
-┃★│ 𝑷𝑳𝑨𝑻𝑭𝑶𝑹𝑴 : *Heroku*
-┃★│ 𝑴𝑶𝑫𝑬 : *[${config.MODE}]*
-┃★│ 𝑷𝑹𝑰𝑭𝑰𝑿 : *[${config.PREFIX}]*
-┃★│ 𝑽𝑬𝑹𝑺𝑰𝑶𝑵 : *v 2.0.0*
-┃★╰──────────────
-╰━━━━━━━━━━━━━━━┈⊷
-╭━━〔 *𝐌𝐄𝐍𝐔 𝐋𝐈𝐒𝐓* 〕━━┈⊷
-┃◈╭─────────────·๏
+  let dec = `*${config.BOT_NAME}* 
+
+*WELCOME ${pushname}*
+
+ 𝑶𝑾𝑵𝑬𝑹 : *${config.BOT_NAME} 
+ 𝑴𝑶𝑫𝑬 : *${config.MODE}*
+ 𝑷𝑹𝑰𝑭𝑰𝑿 : *${config.PREFIX}*
+ 𝑽𝑬𝑹𝑺𝑰𝑶𝑵 : *v 1.0.0*
+
+ *𝐌𝐄𝐍𝐔 𝐋𝐈𝐒𝐓* 
+ 
 ┃◈┃• .ᴀɪᴍᴇɴᴜ
 ┃◈┃• .ᴀɴɪᴍɪᴇᴍᴇɴᴜ
 ┃◈┃• .ᴄᴏɴᴠᴇʀᴛᴍᴇɴᴜ
@@ -41,8 +39,7 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
 ┃◈┃• .ʟᴏɢᴏ<ᴛᴇxᴛ>
 ┃◈┃• .ʙᴜɢᴍᴇɴᴜ
 ┃◈┃• .ᴀɴᴛɪᴅᴇʟ <ꜰᴏʀ ɪɴꜰᴏʀᴍᴀᴛɪᴏɴ ᴀɴᴛɪᴅᴇʟᴇᴛᴇ ᴍᴇꜱᴇɢᴇ>
-┃◈└───────────┈⊷
-╰──────────────┈⊷
+
 > ${config.CAPTION}`;
 
         await conn.sendMessage(
@@ -55,8 +52,8 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
                     forwardingScore: 999,
                     isForwarded: true,
                     forwardedNewsletterMessageInfo: {
-                        newsletterJid: '120363369260614615@newsletter',
-                        newsletterName: 'AWAIS MD',
+                        newsletterJid: '',
+                        newsletterName: '',
                         serverMessageId: 143
                     }
                 }
@@ -66,7 +63,7 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
 
         // Send audio
         await conn.sendMessage(from, {
-            audio: { url: 'https://github.com/Awais-star-a11y/TESTING-REPO/raw/refs/heads/main/VID-20250118-WA0022.mp3' },
+            audio: { url: '' },
             mimetype: 'audio/mp4',
             ptt: true
         }, { quoted: mek });
@@ -81,38 +78,37 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
 // dlmenu
 
 cmd({
-    pattern: "dlmenu",
-    desc: "menu the bot",
+    pattern: "1",
+    desc: "download menu",
     category: "menu",
-    react: "⤵️",
+    react: "📥",
     filename: __filename
 }, 
 async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
     try {
-        let dec = `╭━━〔 *Download Menu* 〕━━┈⊷
-┃◈╭─────────────·๏
-┃◈┃• facebook
-┃◈┃• mediafire
-┃◈┃• tiktok
-┃◈┃• twitter
-┃◈┃• Insta
-┃◈┃• apk
-┃◈┃• img
-┃◈┃• play
-┃◈┃• play2
-┃◈┃• audio
-┃◈┃• video
-┃◈┃• video2
-┃◈┃• ytmp3
-┃◈┃• ytmp4
-┃◈┃• song
-┃◈┃• darama
-┃◈┃• gdrive
-┃◈┃• smovie
-┃◈┃• baiscope 
-┃◈┃• ginisilia 
-┃◈└───────────┈⊷
-╰──────────────┈⊷
+        let dec = `*Download Menu*
+
+facebook
+mediafire
+tiktok
+twitter
+Insta
+apk
+img
+play
+play2
+audio
+video
+video2
+ytmp3
+ytmp4
+song
+darama
+gdrive
+smovie
+baiscope 
+ginisilia 
+
 > ${config.CAPTION}`;
 
         await conn.sendMessage(

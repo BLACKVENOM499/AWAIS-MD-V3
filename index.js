@@ -43,7 +43,7 @@ const {
   const path = require('path')
   const prefix = config.PREFIX
   
-  const ownerNumber = ['923182832887']
+  const ownerNumber = ['94764703165']
   
   const tempDir = path.join(os.tmpdir(), 'cache-temp')
   if (!fs.existsSync(tempDir)) {
@@ -112,7 +112,7 @@ const {
   console.log('Plugins installed successful ✅')
   console.log('Bot connected to whatsapp ✅')
   
-  let up = `*YOUR BOT AKINDU MD ACTIVE NOW ENJOY♥️*\n\n*PREFIX:* ${prefix}`;
+  let up = `*𝐐𝐔𝐄𝐄𝐍 𝐇𝐀𝐒𝐇𝐈 𝐌𝐃 𝐕2 𝐂𝐎𝐍𝐍𝐄𝐂𝐓𝐄𝐃 𝐒𝐔𝐂𝐂𝐄𝐒 𝐅𝐔𝐋𝐋♥️*\n\n*PREFIX:* ${prefix} \n 𝐘𝐎𝐔𝐑 𝐁𝐎𝐓 𝐑𝐔𝐍𝐍𝐈𝐍𝐆 𝐒𝐌𝐎𝐎𝐓𝐇𝐄𝐋𝐘 🧚‍♂️ \n 𝐎𝐖𝐍𝐄𝐑 - 𝐀𝐊𝐈𝐍𝐃𝐔 \n 𝐀𝐆𝐄 - 16`;
     conn.sendMessage(conn.user.id, { image: { url: `https://i.ibb.co/nMky5xTB/7341.jpg` }, caption: up })
   }
   })

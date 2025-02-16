@@ -9,7 +9,7 @@ module.exports = {
     SESSION_ID: process.env.SESSION_ID || "lHFViYjR#OaB1GXUER2IX1UYklyNuxNj4ziIDXXY69bU1D-TtlGw",
     CUSTOM_REACT: process.env.CUSTOM_REACT || "false",
     CUSTOM_REACT_EMOJIS: process.env.CUSTOM_REACT_EMOJIS || "💝,💖,💗,❤️‍🔥,❤️‍🩹,❤️,🩷,🧡,💛,💚,💙,🩵,💜,🤎,🖤,🩶,🤍",
-    CAPTION: process.env.CAPTION || "*POWER BY AKINDU MD*",
+    CAPTION: process.env.CAPTION || "*𝐐𝐔𝐄𝐄𝐍 𝐇𝐀𝐒𝐇𝐈 𝐌𝐃 𝐕2*",
     ALWAYS_ONLINE: process.env.ALWAYS_ONLINE || "false",
     AUTO_READ_STATUS: process.env.AUTO_READ_STATUS || "true",
     READ_MESSAGE: process.env.READ_MESSAGE || "false", // Added auto-read configuration
@@ -18,10 +18,10 @@ module.exports = {
     MODE: process.env.MODE || "public",
     AUTO_VOICE: process.env.AUTO_VOICE || "false",
     AUTO_STICKER: process.env.AUTO_STICKER || "false",
-    AUTHOR: (process.env.PACK_INFO?.split(';') || [])[0] || 'AKINDU MD',
+    AUTHOR: (process.env.PACK_INFO?.split(';') || [])[0] || '𝐐𝐔𝐄𝐄𝐍 𝐇𝐀𝐒𝐇𝐈 𝐌𝐃 𝐕2',
     PACKNAME: (process.env.PACK_INFO?.split(';') || [])[1] || '94724865987',
     AUTO_REPLY: process.env.AUTO_REPLY || "false",
-    ALIVE_IMG: process.env.ALIVE_IMG || "https://i.ibb.co/nMky5xTB/7341.jpg",
+    ALIVE_IMG: process.env.ALIVE_IMG || "https://i.ibb.co/nWJqfPb/mrgmax.jpg",
     ALIVE_MSG: process.env.ALIVE_MSG || "*Hi 👋 AKINDU MD ALIVE NOW*",
     ANTI_LINK: process.env.ANTI_LINK || "false",
     ANTI_BAD: process.env.ANTI_BAD || "false",
@@ -29,7 +29,7 @@ module.exports = {
     FAKE_RECORDING: process.env.FAKE_RECORDING || "true",
     AUTO_REACT: process.env.AUTO_REACT || "false",
     OWNER_REACT: process.env.OWNER_REACT || "false",
-    BOT_NAME: process.env.BOT_NAME || "AKINDU MD",
+    BOT_NAME: process.env.BOT_NAME || "𝐐𝐔𝐄𝐄𝐍 𝐇𝐀𝐒𝐇𝐈 𝐌𝐃 𝐕2",
     ANTI_VV: process.env.ANTI_VV || "true",
     ANTI_DEL_PATH: process.env.ANTI_DEL_PATH || "log", // change it to 'same' if you want to resend deleted message in same chat
     DEV: process.env.DEV || "94724865987", //replace with your whatsapp number

@@ -1,4 +1,3 @@
-*_Song Down Number Reply Plugin...👇❤️_*
 
 /*
 Please Give Credit 🙂❤️

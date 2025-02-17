@@ -1,155 +1,183 @@
-const config = require('../config')
-const {cmd , commands} = require('../command')
-const os = require("os")
+const { fetchJson } = require("../lib/functions");
+const cheerio = require("cheerio");
+const { igdl } = require("ruhend-scraper");
+const axios = require('axios');
+const { cmd, commands } = require("../command");
+const { ytsearch, ytmp3, ytmp4 } = require('@dark-yasiya/yt-dl.js');
+const apilink = 'https://www.dark-yasiya-api.site'
+const apkdl = require('../lib/apkdl')
 
 cmd({
-    pattern: "settings",
-    alias: ["setting"],
-    desc: "settings the bot",
-    category: "owner",
-    react: "⚙",
-    filename: __filename
-
-
-},
-async (conn, mek, m, { from, isOwner, quoted, reply }) => {
-    if (!isOwner) return reply("❌ You are not the owner!");
-    try {
-        let desc = `* _𝑸𝑼𝑬𝑬𝑵 𝑹𝑨𝑺𝑯𝑼 𝑴𝑫 𝑺𝑬𝑻𝑻𝑰𝑵𝑮𝑺_
-
-
-╭══════════════════════○
-┣━ *𝗪𝗢𝗥𝗞 𝗠𝗢𝗗𝗘 ✨*
-> *1️⃣.1️⃣  Public Work*
-> *1️⃣.2️⃣  Private Work*
-> *1️⃣.3️⃣  Group Only*
-> *1️⃣.4️⃣  Inbox Only*
-╭══════════════════════○
-┣━ *𝗔𝗨𝗧𝗢 𝗩𝗢𝗜𝗖𝗘 ✨*
-> *2️⃣.1️⃣ Auto Voice On*
-> *2️⃣.2️⃣ Auto Voice Off*
-╭══════════════════════○
-┣━ *𝗔𝗨𝗧𝗢 𝗦𝗧𝗔𝗧𝗨𝗦 𝗦𝗘𝗘𝗡 ✨*
-> *3️⃣.1️⃣ Auto Read Status On*
-> *3️⃣.2️⃣ Auto Read Status Off*
-╭══════════════════════○
-┣━ *𝗔𝗨𝗧𝗢 𝗦𝗧𝗜𝗖𝗞𝗘𝗥 ✨*
-> *4️⃣.1️⃣ Auto sticker On*
-> *4️⃣.2️⃣ Auto sticker Off*
-╭══════════════════════○
-┣━ *𝗔𝗨𝗧𝗢 𝗥𝗘𝗣𝗟𝗬✨*
-> *5️⃣.1️⃣ Auto reply On*
-> *5️⃣.2️⃣ Auto reply Off*
-╭══════════════════════○
-┣━ *𝗕𝗢𝗧 𝗢𝗡𝗟𝗜𝗡𝗘 𝗢𝗙𝗙𝗟𝗜𝗡𝗘 ✨*
-> *6️⃣.1️⃣ Online On*
-> *6️⃣.2️⃣ Online Off*
-╭══════════════════════○
-┣━ *𝗠𝗦𝗚 𝗥𝗘𝗔𝗗 ✨*
-> *7️⃣.1️⃣ Read Msg On*
-> *7️⃣.2️⃣ Read Msg Off*
-╭══════════════════════○
-┣━ *𝗠𝗦𝗚 𝗥𝗘𝗔𝗖𝗧 ✨*
-> *8️⃣.1️⃣ Auto React On*
-> *8️⃣.2️⃣ Auto React Off*
-╭══════════════════════○
-┣━ *𝗔𝗡𝗧𝗜 𝗟𝗜𝗡𝗞 ✨*
-> *9️⃣.1️⃣ Anti Link On*
-> *9️⃣.2️⃣ Anti Link Off*
-> *9️⃣.3️⃣ Anti Link Remove*
-╰═══════════════════════○
-
-
-* *🔢 Reply Below This Number Change To QUEEN-TASHU-MD Bot Change Setting*
-
-> *© 𝙿𝙾𝚆𝙴𝙰𝚁𝙳 𝙱𝚈 𝚀𝚄𝙴𝙴𝙽 𝚁𝙰𝚂𝙷𝚄 𝙼𝙳 ✾*`;
-
-        const vv = await conn.sendMessage(from, { image: { url: "https://i.ibb.co/BsjkCDP/9555.jpg"}, caption: desc }, { quoted: mek });
-
-        conn.ev.on('messages.upsert', async (msgUpdate) => {
-            const msg = msgUpdate.messages[0];
-            if (!msg.message || !msg.message.extendedTextMessage) return;
-
-            const selectedOption = msg.message.extendedTextMessage.text.trim();
-
-            if (msg.message.extendedTextMessage.contextInfo && msg.message.extendedTextMessage.contextInfo.stanzaId === vv.key.id) {
-                switch (selectedOption) {
-                    case '1.1':
-                        reply(".update MODE:public" );
-                        break;
-                    case '1.2':               
-                        reply(".update MODE:private");
-                        break;
-                    case '1.3':               
-                          reply(".update MODE:group");
-                      break;
-                    case '1.4':     
-                        reply(".update MODE:inbox");
-                      break;
-                    case '2.1':     
-                        reply(".update AUTO_VOICE:true");
-                        break;
-                    case '2.2':     
-                        reply(".update AUTO_VOICE:false");
-                    break;
-                    case '3.1':    
-                        reply(".update AUTO_READ_STATUS:true");
-                    break;
-                    case '3.2':    
-                        reply(".update AUTO_READ_STATUS:false");
-                    break;                    
-                    case '4.1':    
-                        reply(".update AUTO_STICKER:true");
-                    break;
-                    case '4.2':    
-                        reply(".update AUTO_STICKER:false");
-                    break;                                        
-                    case '5.1':    
-                        reply(".update AUTO_REPLY:true");
-                    break;
-                    case '5.2':    
-                        reply(".update AUTO_REPLY:false");
-                    break;                        
-                    case '6.1':    
-                        reply(".update ALLWAYS_OFFLINE:true");
-                    break; 
-                    case '6.2':    
-                        reply(".update ALLWAYS_OFFLINE:false");
-                    break;                       
-                    case '7.1':    
-                        reply(".update READ_MESSAGE:true");
-                    break;
-                    case '7.2':    
-                        reply(".update READ_MESSAGE:false");
-                    break;
-                    case '8.1':    
-                        reply(".update config.AUTO_REACT:true");
-                    break;
-                    case '8.2':    
-                        reply(".update config.AUTO_REACT:false");
-                    break;
-                    case '9.1':    
-                        reply(".update ANTI_LINK:true");
-                        reply(".update ANTI_LINKK:false");
-                    break;
-                    case '9.2':    
-                        reply(".update ANTI_LINKK:true");
-                        reply(".update ANTI_LINK:false");
-                    break;
-                    case '9.3':    
-                        reply(".update ANTI_LINK:false");
-                        reply(".update ANTI_LINKK:false");
-                    break;
-                    default:
-                        reply("Invalid option. Please select a valid option🔴");
-                }
-
-            }
-        });
-
-    } catch (e) {
-        console.error(e);
-        await conn.sendMessage(from, { react: { text: '❌', key: mek.key } })
-        reply('An error occurred while processing your request.');
+  pattern: 'insta',
+  alias: ["ig"],
+  desc: "Download Instagram videos.",
+  react: '🎥',
+  category: "download",
+  filename: __filename
+}, async (_0x386562, _0x1b4817, _0x2d5654, {
+  from: _0x2b1245,
+  quoted: _0x35994d,
+  q: _0x133e89,
+  reply: _0x1bd856
+}) => {
+  try {
+    // Validate URL
+    if (!_0x133e89 || !/^https?:\/\/(www\.)?instagram\.com\/(p|reel|tv)\//.test(_0x133e89)) {
+      return _0x2d5654.reply("Please provide a valid Instagram link.");
     }
+    
+    _0x2d5654.react('⬇️');
+
+    // Fetch video data
+    let _0x46b060 = await igdl(_0x133e89);
+    if (!_0x46b060.data || _0x46b060.data.length === 0) {
+      return _0x2d5654.reply("No videos found for the provided link.");
+    }
+
+    // Send each video
+    for (let video of _0x46b060.data) {
+      if (!video.url) continue; // Skip if URL is missing
+      _0x2d5654.react('⬆️');
+      await _0x386562.sendMessage(_0x2b1245, {
+        video: { url: video.url },
+        mimetype: "video/mp4",
+        caption: "> *© 𝙿𝙾𝚆𝙴𝙰𝚁𝙳 𝙱𝚈 𝚀𝚄𝙴𝙴𝙽 𝚁𝙰𝚂𝙷𝚄 𝙼𝙳 ✾*"
+      }, { quoted: _0x1b4817 });
+    }
+
+    _0x2d5654.react('✅');
+  } catch (error) {
+    console.error(error);
+    _0x2d5654.reply("An error occurred while processing your request.");
+  }
 });
+
+cmd({
+    pattern: "mediafire",
+    alias: ["mf","mfire"],
+    react: "🔥",
+    desc: "Mediafire Link Dawnload",
+    category: "download",
+    use: '.mfire < mediafire url >',
+    filename: __filename
+},
+async(conn, mek, m,{from, quoted, reply, q }) => {
+try{
+  
+if(!q) return await reply("Please give me mediafire url");
+  if(!q.includes('mediafire.com')) return await reply("This url is invalid");
+  
+const mfire = await fetchJson(`${apilink}/download/mfire?url=${q}`);
+  
+const msg = `
+╭═════════════════○
+│🔥*𝐐𝐔𝚵𝚵𝐍 𝐑𝚫𝐒𝐇𝐔 𝐌𝐃 MEDIAFIRE DOWNLOADER*🔥
+╰═════════════════○
+═════════════════○
+╭═════════════════○
+│ ℹ️ *𝐐𝐔𝚵𝚵𝐍 𝐑𝚫𝐒𝐇𝐔 𝐌𝐃* 
+│
+│🌀 ⦁ *File Name* - ${mfire.result.fileName}
+│📚 ⦁ *File Size* - ${mfire.result.size}
+│⏳ ⦁ *Upload Date and Time* - ${mfire.result.date}
+╰═════════════════○
+
+> *© 𝙿𝙾𝚆𝙴𝙰𝚁𝙳 𝙱𝚈 𝚀𝚄𝙴𝙴𝙽 𝚁𝙰𝚂𝙷𝚄 𝙼𝙳 ✾*
+`
+  
+// SEND DETAILS
+await conn.sendMessage( from, { image: { url: 'https://i.ibb.co/dPw1fHD/mfire.jpg' }, caption: msg }, { quoted: mek });
+
+// SEND FILE
+await conn.sendMessage(from, { document: { url: mfire.result.dl_link }, mimetype: mfire.result.fileType , fileName: mfire.result.fileName, caption: mfire.result.fileName }, { quoted: mek });
+
+  
+} catch (e) {
+console.log(e)
+reply('This url type is not working !!')
+}
+})
+
+cmd({
+    pattern: "xvdl",
+    alias: ["xvdl","xvdown"],
+    react: "🔞",
+    desc: "Download xvideo.com porn video",
+    category: "download",
+    use: '.xvideo < text >',
+    filename: __filename
+},
+async(conn, mek, m,{from, quoted, reply, q }) => {
+try{
+
+  if(!q) return await reply("Please give me few word !")
+    
+const xv_list = await fetchJson(`${apilink}/search/xvideo?q=${q}`)
+if(xv_list.result.length < 0) return await reply("Not results found !")
+
+const xv_info = await fetchJson(`${apilink}/download/xvideo?url=${xv_list.result[0].url}`)
+    
+  // FIRST VIDEO
+  
+const msg = `
+╭═════════════════○
+│*𝐐𝐔𝚵𝚵𝐍 𝐑𝚫𝐒𝐇𝐔 𝐌𝐃 XVIDEO DOWNLOADER 🔞*
+╰═════════════════○
+═════════════════○
+╭═════════════════○
+│ *ℹ️ 𝐐𝐔𝚵𝚵𝐍 𝐑𝚫𝐒𝐇𝐔 𝐌𝐃* 
+│
+│🕯️ ⦁ *Title* - ${xv_info.result.title}
+│👁️ ⦁ *Views* - ${xv_info.result.views}
+│🌀 ⦁ *Like* - ${xv_info.result.like}
+│🏷️ ⦁ *Deslike* - ${xv_info.result.deslike}
+│📚 ⦁ *Size* - ${xv_info.result.size}
+╰═════════════════○
+
+> *© 𝙿𝙾𝚆𝙴𝙰𝚁𝙳 𝙱𝚈 𝚀𝚄𝙴𝙴𝙽 𝚁𝙰𝚂𝙷𝚄 𝙼𝙳 ✾*
+`
+
+
+await conn.sendMessage( from, { image: { url: xv_info.result.image || '' }, caption: msg }, { quoted: mek })
+
+// XVIDEO
+await conn.sendMessage(from, { video: { url: xv_info.result.dl_link }, mimetype: "video/mp4", fileName: xv_info.result.title, caption: xv_info.result.title }, { quoted: mek });
+
+// SEND VIDEO
+await conn.sendMessage(from, { document: { url: xv_info.result.dl_link }, mimetype: "video/mp4", fileName: xv_info.result.title, caption: xv_info.result.title }, { quoted: mek });
+
+
+} catch (error) {
+console.log(error)
+reply(error)
+}
+})
+
+// download apk whatsapp
+
+cmd({
+    pattern: "apkdl",
+    react: "📥",
+    dontAddCommandList: true,
+    filename: __filename
+},
+async(conn, mek, m,{from, l, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply}) => {
+try{
+await conn.sendMessage(from, { react: { text: '📥', key: mek.key }})
+if(!q) return await conn.sendMessage(from , { text: 'Need apk link...' }, { quoted: mek } ) 
+const data = await apkdl.download(q)
+let listdata = `📚 Name : ${data.name}
+📦 Developer : ${data.package}
+⬆️ Last update : ${data.lastup}
+📥 Size : ${data.size}`
+await conn.sendMessage(from, { image: { url: data.icon }, caption: listdata }, { quoted: mek })
+//if (data.size.includes('GB')) return await conn.sendMessage(from , { text: 'File size is too big...' }, { quoted: mek } )
+//if (data.size.includes('MB') && data.size.replace(' MB','') > config.MAX_SIZE) return await conn.sendMessage(from , { text: 'File size is too big...' }, { quoted: mek } )
+let sendapk = await conn.sendMessage(from , { document : { url : data.dllink } , mimetype : 'application/vnd.android.package-archive' , fileName : data.name + '.' + 'apk',caption: '' } , { quoted: mek })
+await conn.sendMessage(from, { react: { text: '📁', key: sendapk.key }})
+await conn.sendMessage(from, { react: { text: '✔', key: mek.key }})
+} catch (e) {
+    reply('ERROR !!')
+    console.log(e)
+}
+})

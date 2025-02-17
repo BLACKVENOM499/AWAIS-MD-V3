@@ -1,51 +1,46 @@
-const config = require('../config')
-const {cmd , commands} = require('../command')
-cmd({
-    pattern: "script",
-    alias: ["sc","repo","info"],
-    desc: "bot repo",
-    react: "🤖",
-    category: "main",
-    filename: __filename
-},
-async(conn, mek, m,{from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply}) => {
-try{
-let repo =`
-*╭──────────────●●►*
-> *BOT OWNER:*
-*|* *CREW AWAIS*
+const fetchTikTokData = async (url) => {
+  try {
+    const response = await fetch(`https://nikka-api.us.kg/dl/tiktok?apiKey=nikka&url=${encodeURIComponent(url)}`);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error", error);
+    throw error;
+  }
+};
 
-> *AWAIS MD REPO:*
-*|* *https://github.com/Awais-star-a11y/AWAIS-MD-V3*
+let handler = async (messageContext, { conn, args, usedPrefix, command }) => {
+  const tikTokUrl = args[0];
+  if (!tikTokUrl) {
+    return messageContext.reply("*🟢Example*\n *.tiktok* paste your link");
+  }
 
-> *SUPPORT CHANNEL:*
-*|* *https://whatsapp.com/channel/0029VashGieHAdNP11OHXH3P*
-*╰──────────────●●►*
+  messageContext.react("⏳");
 
-> *update command Done*
-`
-await conn.sendMessage(from, { text: repo ,
-  contextInfo: {
-    mentionedJid: [ '' ],
-    groupMentions: [],
-    forwardingScore: 999,
-    isForwarded: false,
-    forwardedNewsletterMessageInfo: {
-      newsletterJid: '12036323288171807@newsletter',
-      newsletterName: "UMAR",
-      serverMessageId: 999
-    },
-externalAdReply: { 
-title: 'AWAIS MD',
-body: `${pushname}`,
-mediaType: 1,
-sourceUrl: "https://github.com/Awais-star-a11y/AWAIS-MD-V3" ,
-thumbnailUrl: "https://files.catbox.moe/4rihkc.jpg" ,
-renderLargerThumbnail: true,
-showAdAttribution: true
-}
-}}, { quoted: mek})}catch(e){
-console.log(e)
-reply(`${e}`)
-}
-});
+  try {
+    const tikTokData = await fetchTikTokData(tikTokUrl);
+    const videoUrl = tikTokData.data;
+
+    if (!videoUrl) {
+      return messageContext.reply("⚠️ Failed to fetch TikTok video. Please check the URL and try again.");
+    }
+
+    const messageContent = `╭━━⊱𝗧𝗜𝗞𝗧𝗢𝗞 𝗗𝗟\n *URL:* ${videoUrl}\n╰━━━━━━━━━━━━━━━━━`;
+
+    await conn.sendMessage(messageContext.chat, {
+      video: { url: videoUrl },
+      caption: messageContent,
+    }, { quoted: messageContext });
+  } catch (error) {
+    console.error(error);
+    messageContext.reply("⚠️ Error occurred while processing your request.");
+  }
+
+  messageContext.react("✅");
+};
+
+handler.help = ["tiktok"];
+handler.tags = ["tools"];
+handler.command = /^(tiktok|tt|tiktokdl|tiktoknowm|tiktokvid|ttdl)$/i;
+
+export default handler;

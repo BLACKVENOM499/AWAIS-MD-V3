@@ -1,5 +1,5 @@
 cmd({
-  'pattern': "ytmp3",
+  'pattern': "song",
   'alias': "ytsong",
   'desc': "To download songs.",
   'react': '🎵',

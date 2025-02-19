@@ -1,87 +1,46 @@
+
+const {cmd , commands} = require('../command')
+const yts = require('yt-search');
+const fg = require('api-dylux');
+
+// -------- Song Download --------
 cmd({
-  'pattern': "song",
-  'alias': "ytsong",
-  'desc': "To download songs.",
-  'react': '🎵',
-  'category': "download",
-  'filename': __filename
-}, async (conn, mek, m, { from, isOwner, quoted, reply, q }) => {
-  try {
-    // Check if message contains a valid URL or title
-    if (!q) {
-      return reply("Please give me a URL or title.");
-    }
+    pattern: 'song',
+    desc: 'download songs',
+    react: "🎶",
+    category: 'download',
+    filename: __filename
+},
+async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
+    try {
+        if (!q) return reply('*Please enter a query or a url !*');
 
-    
-    const searchResults = await yts(q);
-    const video = searchResults.videos[0]; // Get the first video
+        const search = await yts(q);
+        const data = search.videos[0];
+        const url = data.url;
 
-    // Extract video information
-    const videoUrl = video.url;
-    const videoThumbnail = video.thumbnail;
-    const videoTitle = video.title;
-    const videoDuration = video.timestamp;
-    const videoViews = video.views;
-    const videoUploadTime = video.ago;
+        let desc = `*🎼 SUPUN MD SONG DOWNLOADER . .⚙️*
 
-    // Prepare the message to send
-    let messageText = `
-   ┏┻━━━━━━━━━━━━━
-   ┃*ᴍᴀʟᴀᴋᴀ-ᴍᴅ ꜱᴏɴɢ ᴅᴏᴡɴʟᴏᴀᴅ*
-   ┗━━━━━━━━━━━━━━
-   ╭────────────────❖
-   │ ℹ️ *MALAKA-MD* 
-   │
-   │☍ ⦁ *Title:* ${video.title} 
-   │☍ ⦁ *Duration:* ${video.timestamp}
-   │☍ ⦁ *Views:* ${video.views}   
-   │☍ ⦁ *Uploaded On:* ${video.ago} 
-   ╰────────────────❖
-   ❖──────────────────❖
-   ╭──────────────────❖
-   │ © 𝙏𝙤 𝙙𝙤𝙬𝙣𝙡𝙤𝙖𝙙 𝙨𝙚𝙣𝙙: 🔢
-   │
-   │ *_1_*  ᴀᴜᴅɪᴏ ꜰɪʟᴇ 🎶
-   │──────────────────❖
-   │ *_2_*  ᴅᴏᴄᴜᴍᴇɴᴛ ꜰɪʟᴇ 📂
-⁠⁠⁠⁠   ╰──────────────────❖
-  © ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴍᴀʟᴀᴋᴀ-ᴍᴅ . . . 👩‍💻`;
+🎼⚙️ TITLE - ${data.title}
 
-    // Send the message with the thumbnail and download options
-    const vv = await conn.sendMessage(from, {
-      'image': {
-        'url': videoThumbnail
-      },
-      'caption': messageText,
-      'contextInfo': {
-        'mentionedJid': ["94704243771@s.whatsapp.net"],
-        'groupMentions': [],
-        'forwardingScore': 1,
-        'isForwarded': true,
-        'forwardedNewsletterMessageInfo': {
-          'newsletterJid': "120363382823666763@newsletter",
-          'newsletterName': "ᴍᴀʟᴀᴋᴀ-ᴍᴅ ",
-          'serverMessageId': 999
-        },
-        'externalAdReply': {
-          'title': "MALAKA-MD",
-          'body': "ᴍᴀʟᴀᴋᴀ",
-          'mediaType': 1,
-          'sourceUrl': "https://github.com/Malaka-KG/MALAKA-MD-V1",
-          'thumbnailUrl': "https://i.ibb.co/JrdxHSY/3439.jpg",
-          'renderLargerThumbnail': false,
-          'showAdAttribution': true
-        }
-      }
-    }, {
-      'quoted': mek
-    });
+🎼⚙️ VIEWS - ${data.views}
 
-    const downloadData = await fetchJson(`https://api.davidcyriltech.my.id/download/ytmp3?url=${videoUrl}`);
-        const downloadUrl = downloadData.result.download_url;
+🎼⚙️ DESCRIPTION - ${data.description}
 
-    // Handle the user's reply for download format
-            conn.ev.on('messages.upsert', async (msgUpdate) => {
+🎼⚙️ TIME - ${data.timestamp}
+
+🎼⚙️ AGO - ${data.ago}
+
+*Reply This Message With Option*
+
+*1 Audio With Normal Format*
+*2 Audio With Document Format*
+
+> ᴘᴀᴡᴇʀᴇᴅ ʙʏ ꜱᴜᴘᴜɴ ᴍᴅ`;
+
+        const vv = await conn.sendMessage(from, { image: { url: data.thumbnail }, caption: desc }, { quoted: mek });
+
+        conn.ev.on('messages.upsert', async (msgUpdate) => {
             const msg = msgUpdate.messages[0];
             if (!msg.message || !msg.message.extendedTextMessage) return;
 
@@ -90,79 +49,99 @@ cmd({
             if (msg.message.extendedTextMessage.contextInfo && msg.message.extendedTextMessage.contextInfo.stanzaId === vv.key.id) {
                 switch (selectedOption) {
                     case '1':
-                        
-           
-        
-          await conn.sendMessage(from, {
-            'audio': {
-              'url': downloadUrl
-            },
-            'mimetype': "audio/mpeg",
-            'contextInfo': {
-              'mentionedJid': ["94704243771@s.whatsapp.net"],
-              'groupMentions': [],
-              'forwardingScore': 1,
-              'isForwarded': true,
-              'forwardedNewsletterMessageInfo': {
-                'newsletterJid': '120363382823666763@newsletter',
-                'newsletterName': "ᴍᴀʟᴀᴋᴀ-ᴍᴅ ",
-                'serverMessageId': 999
-              },
-              'externalAdReply': {
-                'title': "MALAKA-MD",
-                'body': "ᴍᴀʟᴀᴋᴀ",
-                'mediaType': 1,
-                'sourceUrl': videoUrl,
-                'thumbnailUrl': videoThumbnail,
-                'renderLargerThumbnail': false,
-                'showAdAttribution': true
-              }
+                        let down = await fg.yta(url);
+                        let downloadUrl = down.dl_url;
+                        await conn.sendMessage(from, { audio: { url:downloadUrl }, caption: '> ᴘᴀᴡᴇʀᴇᴅ ʙʏ ꜱᴜᴘᴜɴ ᴍᴅ', mimetype: 'audio/mpeg'},{ quoted: mek });
+                        break;
+                    case '2':               
+                        // Send Document File
+                        let downdoc = await fg.yta(url);
+                        let downloaddocUrl = downdoc.dl_url;
+                        await conn.sendMessage(from, { document: { url:downloaddocUrl }, caption: '> ᴘᴀᴡᴇʀᴇᴅ ʙʏ ꜱᴜᴘᴜɴ ᴍᴅ', mimetype: 'audio/mpeg', fileName:data.title + ".mp3"}, { quoted: mek });
+                        await conn.sendMessage(from, { react: { text: '✅', key: mek.key } })
+                        break;
+                    default:
+                        reply("Invalid option. Please select a valid option🔴");
+                }
+
             }
-          }, {
-            'quoted': mek
-          });
+        });
 
-          
-                 
-                        
-                        break;  
-                       case '2': 
-          await conn.sendMessage(from, {
-            'document': {
-              'url': downloadUrl
-            },
-            'mimetype': "audio/mpeg",
-            'fileName': videoTitle + '.mp3',
-            'caption': "\n*© ᴄʀᴇᴀᴛᴇᴅ ʙʏ ᴍᴀʟᴀᴋᴀ-ᴍᴅ · · ·👨‍💻*\n ",
-            'contextInfo': {
-              'mentionedJid': ["94704243771@s.whatsapp.net"],
-              'groupMentions': [],
-              'forwardingScore': 1,
-              'isForwarded': true,
-              'forwardedNewsletterMessageInfo': {
-                'newsletterJid': '120363382823666763@newsletter',
-                'newsletterName': "ᴍᴀʟᴀᴋᴀ-ᴍᴅ ",
-                'serverMessageId': 999
-              },
-              'externalAdReply': {
-                'title': "MALAKA-MD",
-                'body': "ᴍᴀʟᴀᴋᴀ",
-                'mediaType': 1,
-                'sourceUrl': videoUrl,
-                'thumbnailUrl': videoThumbnail,
-                'renderLargerThumbnail': false,
-                'showAdAttribution': true
-              }
-            }
-          }, {
-            'quoted': mek
-          });
-          }}});
-
-
-
-  } catch (error) {
-    console.log(error);
-    reply('' + error);
-  }
+    } catch (e) {
+        console.error(e);
+        await conn.sendMessage(from, { react: { text: '❌', key: mek.key } })
+        reply('An error occurred while processing your request.');
+    }
 });
+
+
+//==================== Video downloader =========================
+
+cmd({
+    pattern: 'video',
+    desc: 'download videos',
+    react: "📽️",
+    category: 'download',
+    filename: __filename
+},
+async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
+    try {
+        if (!q) return reply('*Please enter a query or a url !*');
+
+        const search = await yts(q);
+        const data = search.videos[0];
+        const url = data.url;
+
+        let desc = `*📽️ SUPUN MD VIDEO DOWNLOADER . .⚙️*
+
+📽️⚙️ TITLE - ${data.title}
+
+📽️⚙️ VIEWS - ${data.views}
+
+📽️⚙️ DESCRIPTION - ${data.description}
+
+📽️⚙️ TIME - ${data.timestamp}
+
+📽️⚙️ AGO - ${data.ago}
+
+*Reply This Message With Option*
+
+*1 Video With Normal Format*
+*2 Video With Document Format*
+
+> ᴘᴀᴡᴇʀᴇᴅ ʙʏ ꜱᴜᴘᴜɴ ᴍᴅ`;
+
+        const vv = await conn.sendMessage(from, { image: { url: data.thumbnail }, caption: desc }, { quoted: mek });
+
+        conn.ev.on('messages.upsert', async (msgUpdate) => {
+            const msg = msgUpdate.messages[0];
+            if (!msg.message || !msg.message.extendedTextMessage) return;
+
+            const selectedOption = msg.message.extendedTextMessage.text.trim();
+
+            if (msg.message.extendedTextMessage.contextInfo && msg.message.extendedTextMessage.contextInfo.stanzaId === vv.key.id) {
+                switch (selectedOption) {
+                    case '1':
+                        let downvid = await fg.ytv(url);
+                        let downloadvUrl = downvid.dl_url;
+                        await conn.sendMessage(from, { video : { url:downloadvUrl }, caption: '> ᴘᴀᴡᴇʀᴇᴅ ʙʏ ꜱᴜᴘᴜɴ ᴍᴅ', mimetype: 'video/mp4'},{ quoted: mek });
+                        break;
+                    case '2':
+                        let downviddoc = await fg.ytv(url);
+                        let downloadvdocUrl = downviddoc.dl_url;
+                        await conn.sendMessage(from, { document: { url:downloadvdocUrl }, caption: '> ᴘᴀᴡᴇʀᴇᴅ ʙʏ ꜱᴜᴘᴜɴ ᴍᴅ', mimetype: 'video/mp4', fileName:data.title + ".mp4" }, { quoted: mek });
+                        break;
+                    default:
+                        reply("Invalid option. Please select a valid option🔴");
+                }
+
+            }
+        });
+
+    } catch (e) {
+        console.error(e);
+        await conn.sendMessage(from, { react: { text: '❌', key: mek.key } })
+        reply('An error occurred while processing your request.');
+    }
+});
+ 

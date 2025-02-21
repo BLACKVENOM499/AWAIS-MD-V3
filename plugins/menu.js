@@ -37,7 +37,7 @@ cmd({
   reply: _0x3480dc
 }) => {
   try {
-    let _0x2c3bd5 = "*𝐖𝐄𝐋𝐂𝐎𝐌𝐄*\n > ʀᴜɴᴛɪᴍᴇ : " + runtime(process.uptime()) + "*\n> ʀᴀᴍ ᴜꜱᴀɢᴇ : " + (process.memoryUsage().heapUsed / 0x400 / 0x400).toFixed(0x2) + "MB / " + Math.round(require('os').totalmem / 0x400 / 0x400) + "MB\n> ᴍᴏᴅᴇ : " + config.MODE + "\n> ᴘʀᴇғɪx : " + config.PREFIX + "\n*𝐌𝐀𝐈𝐍 𝐌𝐄𝐍𝐔*\n*1 𝐎𝐖𝐍𝐄𝐑 𝐌𝐄𝐍𝐔 💻*\n*2 𝐃𝐎𝐖𝐍𝐋𝐎𝐀𝐃 𝐌𝐄𝐍𝐔 📥*\n*3 𝐆𝐑𝐎𝐔𝐏 𝐌𝐄𝐍𝐔 👥*\n*4 𝐈𝐍𝐅𝐎 𝐌𝐄𝐍𝐔 📃*\n*4 𝐑𝐀𝐍𝐃𝐎𝐌 𝐌𝐄𝐍𝐔 🧚‍♂️*\n*5 𝐂𝐎𝐍𝐕𝐄𝐑𝐓 𝐌𝐄𝐍𝐔 🔄*\n*6 𝐀𝐈 𝐌𝐄𝐍𝐔 🤖*\n*7 𝐖𝐀𝐋𝐋𝐏𝐀𝐏𝐄𝐑 𝐌𝐄𝐍𝐔 🌠*\n*8 𝐎𝐓𝐇𝐄𝐑 𝐌𝐄𝐍𝐔 ⚙️*\n\n*❏ ʀᴇᴘʟʏ ᴡɪᴛʜ ᴛʜᴇ ɴᴜᴍʙᴇʀ ʏᴏᴜ ᴡᴀɴᴛ ᴏᴜᴛ ᴛᴏ sᴇʟᴇᴄ*\n\n> " + config.CAPTION;
+    let _0x2c3bd5 = "*𝐖𝐄𝐋𝐂𝐎𝐌𝐄*\n> ʀᴜɴᴛɪᴍᴇ : " + runtime(process.uptime()) + "*\n> ʀᴀᴍ ᴜꜱᴀɢᴇ : " + (process.memoryUsage().heapUsed / 0x400 / 0x400).toFixed(0x2) + "MB\n> ᴍᴏᴅᴇ : " + config.MODE + "\n> ᴘʀᴇғɪx : " + config.PREFIX + "\n*𝐌𝐀𝐈𝐍 𝐌𝐄𝐍𝐔*\n*1 𝐎𝐖𝐍𝐄𝐑 𝐌𝐄𝐍𝐔 💻*\n*2 𝐃𝐎𝐖𝐍𝐋𝐎𝐀𝐃 𝐌𝐄𝐍𝐔 📥*\n*3 𝐆𝐑𝐎𝐔𝐏 𝐌𝐄𝐍𝐔 👥*\n*4 𝐈𝐍𝐅𝐎 𝐌𝐄𝐍𝐔 📃*\n*4 𝐑𝐀𝐍𝐃𝐎𝐌 𝐌𝐄𝐍𝐔 🧚‍♂️*\n*5 𝐂𝐎𝐍𝐕𝐄𝐑𝐓 𝐌𝐄𝐍𝐔 🔄*\n*6 𝐀𝐈 𝐌𝐄𝐍𝐔 🤖*\n*7 𝐖𝐀𝐋𝐋𝐏𝐀𝐏𝐄𝐑 𝐌𝐄𝐍𝐔 🌠*\n*8 𝐎𝐓𝐇𝐄𝐑 𝐌𝐄𝐍𝐔 ⚙️*\n\n*❏ ʀᴇᴘʟʏ ᴡɪᴛʜ ᴛʜᴇ ɴᴜᴍʙᴇʀ ʏᴏᴜ ᴡᴀɴᴛ ᴏᴜᴛ ᴛᴏ sᴇʟᴇᴄ*\n\n> " + config.CAPTION;
     const _0x15c492 = await _0x22bf17.sendMessage(_0x32ec9e, {
       'image': {
         'url': config.ALIVE_IMG

@@ -169,7 +169,7 @@ cmd({
     const _0x4aa4a3 = await fetchJson("https://dark-yasiya-api.site/search/yt?q=" + _0x4fa5b7);
     const _0x22c5f8 = _0x4aa4a3.result.data[0x0];
     const _0x232836 = await fetchJson("https://dark-shan-yt.koyeb.app/download/ytmp3?url=" + _0x22c5f8.url + "&quality=3");
-    let _0x2b11d0 = "‎‎           \n 𝐐𝐔𝐄𝐄𝐍 𝐇𝐀𝐒𝐇𝐈 𝐌𝐃 𝐕2 𝐒𝐎𝐍𝐆 𝐃𝐎𝐖𝐍𝐋𝐎𝐀𝐃𝐄𝐑 🎵\n\n\n 🎵 ‎Title: " + _0x22c5f8.title + "\n ⏱ Duration: " + _0x22c5f8.timestamp + "\n 🌏 Uploaded: " + _0x22c5f8.ago + "\n 🧿 Views: " + _0x22c5f8.views + "\n 🤵 Author: " + _0x22c5f8.author.name + "\n 📎 Url: " + _0x22c5f8.url;
+    let _0x2b11d0 = "‎𝐐𝐔𝐄𝐄𝐍 𝐇𝐀𝐒𝐇𝐈 𝐌𝐃 𝐕2 𝐒𝐎𝐍𝐆 𝐃𝐎𝐖𝐍𝐋𝐎𝐀𝐃𝐄𝐑 🎵\n\n\n 🎵 ‎Title: " + _0x22c5f8.title + "\n ⏱ Duration: " + _0x22c5f8.timestamp + "\n 🌏 Uploaded: " + _0x22c5f8.ago + "\n 🧿 Views: " + _0x22c5f8.views + "\n 🤵 Author: " + _0x22c5f8.author.name + "\n 📎 Url: " + _0x22c5f8.url;
     await _0x3d4ec7.sendMessage(_0x4028ec, {
       'image': {
         'url': _0x22c5f8.thumbnail
